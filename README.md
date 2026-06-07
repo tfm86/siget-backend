@@ -390,79 +390,78 @@ flowchart TD
 
 ```mermaid
 
-    classDiagram
-    
-        class Usuario {
-            +Long id
-            +String nome
-            +String email
-            +String senha
-            +String perfil
-            +Boolean ativo
-        }
-    
-        class Tecnico {
-            +Long id
-            +String matricula
-            +String regional
-        }
-    
-        class Site {
-            +Long id
-            +String endid
-            +String nome
-            +String endereco
-            +String status
-        }
-    
-        class Catalogo {
-            +Long id
-            +String modelo
-            +String fabricante
-            +String tipo
-            +Boolean adaptada
-        }
-    
-        class Equipamento {
-            +Long id
-            +String serial
-            +String status
-        }
-    
-        class Inventario {
-            +Long id
-            +String status
-        }
-    
-        class Vistoria {
-            +Long id
-            +String status
-        }
-    
-        class HistoricoVistoria {
-            +Long id
-            +String acao
-            +String descricao
-        }
-    
-        class LogSistema {
-            +Long id
-            +String acao
-            +String detalhes
-        }
-    
-        %% Relações
-        Usuario --> Tecnico : "1:1"
-        Usuario --> LogSistema : "1:N"
-    
-        Site --> Equipamento : "1:N"
-        Equipamento --> Inventario : "1:N"
-    
-        Site --> Vistoria : "1:N"
-        Vistoria --> HistoricoVistoria : "1:N"
-    
-        Catalogo --> Equipamento : "1:N"
+ classDiagram
 
+    class Usuario {
+        +Long id
+        +String nome
+        +String email
+        +String senha
+        +String perfil
+        +Boolean ativo
+    }
+
+    class Tecnico {
+        +Long id
+        +String matricula
+        +String regional
+    }
+
+    class Site {
+        +Long id
+        +String endid
+        +String nome
+        +String endereco
+        +String status
+    }
+
+    class Catalogo {
+        +Long id
+        +String modelo
+        +String fabricante
+        +String tipo
+        +Boolean adaptada
+    }
+
+    class Equipamento {
+        +Long id
+        +String serial
+        +String status
+    }
+
+    class Inventario {
+        +Long id
+        +String status
+    }
+
+    class Vistoria {
+        +Long id
+        +String status
+    }
+
+    class HistoricoVistoria {
+        +Long id
+        +String acao
+        +String descricao
+    }
+
+    class LogSistema {
+        +Long id
+        +String acao
+        +String detalhes
+    }
+
+    %% Relações
+    Usuario --> Tecnico : "1:1"
+    Usuario --> LogSistema : "1:N"
+
+    Site --> Equipamento : "1:N"
+    Equipamento --> Inventario : "1:N"
+
+    Site --> Vistoria : "1:N"
+    Vistoria --> HistoricoVistoria : "1:N"
+
+    Catalogo --> Equipamento : "1:N"
 
 ```
 
