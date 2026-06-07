@@ -283,3 +283,52 @@ erDiagram
 ```
 
 ---
+
+### **🟦 9. Tabelas do Banco de Dados**
+
+---
+
+### **🟦 10. Diagrama de Sequência – Fluxo de Instalação** 
+
+```mermaid
+
+sequenceDiagram
+    actor Tecnico
+    participant App as App Mobile
+    participant API as Backend SIGET
+    participant DB as Banco
+
+    Tecnico->>App: Login
+    App->>API: POST /auth/login
+    API->>DB: Consulta usuário
+    DB-->>API: Retorna usuário
+    API-->>App: Token JWT
+
+    Tecnico->>App: Buscar Site
+    App->>API: GET /sites/{endid}
+    API->>DB: SELECT site
+    DB-->>API: Dados do site
+    API-->>App: Retorno site
+
+    Tecnico->>App: Criar Vistoria
+    App->>API: POST /vistorias
+    API->>DB: INSERT vistoria
+    DB-->>API: OK
+    API-->>App: Vistoria criada
+
+    Tecnico->>App: Instalar Equipamento
+    App->>API: POST /equipamentos/instalar
+    API->>DB: Valida catálogo
+    API->>DB: INSERT equipamento
+    API->>DB: INSERT inventário
+    API->>DB: INSERT histórico
+    DB-->>API: OK
+    API-->>App: Instalação concluída
+
+    Tecnico->>App: Finalizar Vistoria
+    App->>API: PUT /vistorias/{id}/finalizar
+    API->>DB: UPDATE vistoria
+    DB-->>API: OK
+    API-->>App: Vistoria finalizada
+
+```
