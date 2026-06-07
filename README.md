@@ -390,7 +390,7 @@ flowchart TD
 
 ```mermaid
 
- classDiagram
+classDiagram
 
     class Usuario {
         +Long id
@@ -451,17 +451,17 @@ flowchart TD
         +String detalhes
     }
 
-    %% Relações
-    Usuario --> Tecnico : "1:1"
-    Usuario --> LogSistema : "1:N"
+    Usuario --> Tecnico
+    Usuario --> LogSistema
 
-    Site --> Equipamento : "1:N"
-    Equipamento --> Inventario : "1:N"
+    Site --> Equipamento
+    Equipamento --> Inventario
 
-    Site --> Vistoria : "1:N"
-    Vistoria --> HistoricoVistoria : "1:N"
+    Site --> Vistoria
+    Vistoria --> HistoricoVistoria
 
-    Catalogo --> Equipamento : "1:N"
+    Catalogo --> Equipamento
+
 
 ```
 
