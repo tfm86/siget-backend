@@ -332,3 +332,208 @@ sequenceDiagram
     API-->>App: Vistoria finalizada
 
 ```
+---
+
+## **🟦 11. Diagrama de Caso de Uso**
+
+```mermaid
+
+flowchart TD
+
+    %% Atores
+    A[Administrador]:::actor
+    T[Técnico]:::actor
+
+    %% Sistema
+    S((SIGET)):::system
+
+    %% Casos de Uso - Administrador
+    CU1[Gerenciar Usuários]
+    CU2[Gerenciar Técnicos]
+    CU3[Gerenciar Catálogo]
+
+    %% Casos de Uso - Técnico
+    CU4[Realizar Vistoria]
+    CU5[Instalar Equipamento]
+    CU6[Substituir/Remover Equipamento]
+    CU7[Atualizar Inventário]
+
+    %% Relações Administrador
+    A --> CU1
+    A --> CU2
+    A --> CU3
+
+    %% Relações Técnico
+    T --> CU4
+    T --> CU5
+    T --> CU6
+    T --> CU7
+
+    %% Casos de uso conectados ao sistema
+    CU1 --> S
+    CU2 --> S
+    CU3 --> S
+    CU4 --> S
+    CU5 --> S
+    CU6 --> S
+    CU7 --> S
+
+    %% Estilos
+    classDef actor fill:#f4f4f4,stroke:#333,stroke-width:1px;
+    classDef system fill:#d1e8ff,stroke:#036,stroke-width:2px;
+
+```
+
+---
+
+## **🟦 12. Diagrama de Classes**
+
+```mermaid
+
+classDiagram
+
+    class Usuario {
+        +Long id
+        +String nome
+        +String email
+        +String senha
+        +String perfil
+        +Boolean ativo
+    }
+
+    class Tecnico {
+        +Long id
+        +String matricula
+        +String regional
+    }
+
+    class Site {
+        +Long id
+        +String endid
+        +String nome
+        +String endereco
+        +String status
+    }
+
+    class Catalogo {
+        +Long id
+        +String modelo
+        +String fabricante
+        +String tipo
+        +Boolean adaptada
+    }
+
+    class Equipamento {
+        +Long id
+        +String serial
+        +String status
+    }
+
+    class Inventario {
+        +Long id
+        +String status
+    }
+
+    class Vistoria {
+        +Long id
+        +String status
+    }
+
+    class HistoricoVistoria {
+        +Long id
+        +String acao
+        +String descricao
+    }
+
+    class LogSistema {
+        +Long id
+        +String acao
+        +String detalhes
+    }
+
+    %% Relações
+    Usuario --> Tecnico : "1:1"
+    Usuario --> LogSistema : "1:N"
+
+    Site --> Equipamento : "1:N"
+    Equipamento --> Inventario : "1:N"
+
+    Site --> Vistoria : "1:N"
+    Vistoria --> HistoricoVistoria : "1:N"
+
+    Catalogo --> Equipamento : "1:N"
+
+
+```
+
+---
+
+
+### **🟦 13. Introdução aos Requisitos**
+
+Os requisitos do SIGET definem o comportamento esperado do sistema e servem como base para orientar o desenvolvimento, garantir alinhamento entre as áreas envolvidas e permitir validação futura.
+
+Eles foram organizados em:
+
+   - Requisitos Funcionais (RF): o que o sistema deve fazer.
+
+   - Requisitos Não Funcionais (RNF): como o sistema deve se comportar.
+---
+
+### **🟦 14. Requisitos Funcionais (RF)**
+
+- RF01 – Autenticação via JWT
+- RF02 – Gerenciamento de usuários
+- RF03 – Gerenciamento de técnicos
+- RF04 – Catálogo de equipamentos
+- RF05 – Consulta e cadastro de site
+- RF06 – Instalação de equipamentos
+- RF07 – Remoção de equipamentos
+- RF08 – Substituição de equipamentos
+- RF09 – Atualização de equipamentos
+- RF10 – Regra de adaptação da fonte
+- RF11 – Inventário automático
+- RF12 – Vistorias
+- RF13 – Histórico de vistoria
+- RF14 – Logs de auditoria
+- RF15 – Serial automático
+- RF16 – Validação de catálogo
+- RF17 – Site não ativo
+
+### **🟦 15. Requisitos Não Funcionais (RNF)**
+
+(lista completa com Guided Links)
+
+- RNF01 – Segurança
+- RNF02 – Integridade dos dados
+ - RNF03 – Escalabilidade
+- RNF04 – Disponibilidade
+ - RNF05 – Padrão REST
+- RNF06 – Auditoria completa
+- RNF07 – Independência do frontend
+- RNF08 – Performance adequada
+- RNF09 – Tolerância a falhas
+
+---
+
+### **🟦 16. Fluxos Operacionais**
+#### Fluxo do Técnico
+
+- Login
+- Buscar site
+- Criar vistoria
+ - Instalar/remover/substituir equipamentos
+ - Finalizar vistoria
+ - Inventário atualizado automaticamente
+
+#### Fluxo do Administrador
+
+- Criar usuários
+- Criar técnicos
+- Criar catálogo
+- Atualizar catálogo
+- Consultar logs
+
+### **🟦 16. Licença**
+
+O projeto utiliza a Licença MIT.
