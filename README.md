@@ -195,3 +195,91 @@ Gera documentação automática das APIs (Swagger).
     │   CATALOGO   │──────────────────────│   EQUIPAMENTO    │
     └──────────────┘                      └──────────────────┘
 
+```mermaid
+
+
+erDiagram
+
+    USUARIO ||--|| TECNICO : "possui"
+    USUARIO ||--o{ LOG_SISTEMA : "gera"
+
+    SITE ||--o{ EQUIPAMENTO : "possui"
+    EQUIPAMENTO ||--o{ INVENTARIO : "registra"
+
+    SITE ||--o{ VISTORIA : "tem"
+    VISTORIA ||--o{ HISTORICO_VISTORIA : "registra"
+
+    CATALOGO ||--o{ EQUIPAMENTO : "modelo"
+
+    USUARIO {
+        bigint id PK
+        varchar nome
+        varchar email
+        varchar senha
+        varchar perfil
+        boolean ativo
+    }
+
+    TECNICO {
+        bigint id PK
+        bigint usuario_id FK
+        varchar matricula
+        varchar regional
+    }
+
+    SITE {
+        bigint id PK
+        varchar endid
+        varchar nome
+        varchar endereco
+        varchar status
+    }
+
+    CATALOGO {
+        bigint id PK
+        varchar modelo
+        varchar fabricante
+        varchar tipo
+        boolean adaptada
+    }
+
+    EQUIPAMENTO {
+        bigint id PK
+        bigint site_id FK
+        bigint catalogo_id FK
+        varchar serial
+        varchar status
+    }
+
+    INVENTARIO {
+        bigint id PK
+        bigint equipamento_id FK
+        bigint site_id FK
+        varchar status
+    }
+
+    VISTORIA {
+        bigint id PK
+        bigint site_id FK
+        bigint tecnico_id FK
+        varchar status
+    }
+
+    HISTORICO_VISTORIA {
+        bigint id PK
+        bigint vistoria_id FK
+        bigint equipamento_id FK
+        varchar acao
+        text descricao
+    }
+
+    LOG_SISTEMA {
+        bigint id PK
+        bigint usuario_id FK
+        varchar acao
+        jsonb detalhes
+    }
+
+```
+
+---
