@@ -19,6 +19,9 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(unique = true)
+    private String codigoUsuario; // T0000001, A0000001, F0000001
+
     @Column(nullable = false, length = 150)
     private String nome;
 
@@ -29,9 +32,10 @@ public class Usuario {
     private String senha;
 
     @Column(nullable = false, length = 50)
-    private String perfil; // ADMIN, TECNICO
+    private String perfil; // ADMIN, TECNICO, FUNCIONÁRIO
 
     @Column(nullable = false)
     private Boolean ativo = true;
+
 }
 

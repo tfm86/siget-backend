@@ -22,6 +22,7 @@ public class UsuarioMapper {
     public UsuarioResponseDTO toDTO(Usuario usuario) {
         return new UsuarioResponseDTO(
                 usuario.getId(),
+                usuario.getCodigoUsuario(),
                 usuario.getNome(),
                 usuario.getEmail(),
                 usuario.getPerfil(),

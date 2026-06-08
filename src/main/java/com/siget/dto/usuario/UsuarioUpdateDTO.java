@@ -1,13 +1,10 @@
 package com.siget.dto.usuario;
 
-public record UsuarioResponseDTO(
-        Long id,
-        String codigoUsuario,
+public record UsuarioUpdateDTO(
         String nome,
         String email,
+        String senha,
         String perfil,
         Boolean ativo
 ) {}
-
-
 
